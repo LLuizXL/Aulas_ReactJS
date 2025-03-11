@@ -11,21 +11,19 @@ import Rodape from "./components/rodape/Rodape";
 import { useState } from "react";
 
 const App = () => {
-  const [isLight, setIsLight] = useState(true);
-  const[fotoAtual, setFotoAtual] = useState(foto2) // Variavel da Foto atual, no caso, a foto atual será considera como a foto2 (padrão), como se a foto 2 fosse 'true'.
+  const [isLight, setIsLight] = useState(true); // Variavel da Foto atual, no caso, a foto atual será considera como a foto2 (padrão), como se a foto 2 fosse 'true'.
 
   const troca = () => {
-    setIsLight(!isLight);
-    setFotoAtual(isLight ? foto : foto2) //Caso o tema estiver claro, a foto 1 será utilizada, se não, é trocado para a foto 2.
+    setIsLight(!isLight); //Caso o tema estiver claro, a foto 1 será utilizada, se não, é trocado para a foto 2.
   }
 
   return (
     
     <div id="App" className={isLight ? "light" : ""
     }>
-      
+
     <div id="container">
-       <Perfil fotoPerfil={fotoAtual}> @LLuizG </Perfil>  
+       <Perfil fotoPerfil={isLight ? foto2 : foto}> @LLuizG </Perfil>  
       <Switch
       troca={troca} 
       isLight={isLight}
