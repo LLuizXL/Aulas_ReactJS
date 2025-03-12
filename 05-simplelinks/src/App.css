@@ -85,14 +85,20 @@
 .Profile{}
 
 
- button{
+ #btn-music{
   width: 64px;
   height: 64px;
   border: 0;
   background: url(./assets/img/icons8-play-64.png);
- 
+  cursor: pointer; 
+}
 
-  
+#btn-music.playing{
+  width: 64px;
+  height: 64px;
+  background: url(./assets/img/icons8-pause-button-64.png);
+  border: 0;
+  cursor: pointer;
 }
 
  
