@@ -164,3 +164,18 @@
   font-size: 25px;
 }
 
+footer{ 
+  align-items: center;
+  text-align: center;
+  height: 200px;
+  margin-top: 50px;
+  color: white;
+}
+
+.socials-group a{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-decoration: none;
+  color: white;
+}
