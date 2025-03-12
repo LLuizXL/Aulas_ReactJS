@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import Footer from "./components/footer/Footer";
 import MovieCard from "./components/movieCard/MovieCard";
+import logo from "./assets/img/devflix.png"
+import lupa from "./assets/img/search.svg"
 // import logo from "";
 
 
@@ -36,7 +38,7 @@ const handleKeyPress = (e) => { // e = evento | ao clicar ou digitar, acontece a
 
   return (
     <div id="app">
-      <img className="logo" src={"https://placehold.co/200x200"} alt="" />
+      <img className="logo" src={logo} alt="" />
 
       <div className="search">
         <input
@@ -47,7 +49,7 @@ const handleKeyPress = (e) => { // e = evento | ao clicar ou digitar, acontece a
        />
         <img
          onClick={() => searchMovies(search)}
-         src={"https://placehold.co/20x20"} 
+         src={lupa} 
          alt=""
           />
       </div>
