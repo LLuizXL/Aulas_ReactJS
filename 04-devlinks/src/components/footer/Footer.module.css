@@ -1,0 +1,9 @@
+footer{
+    color: #f9d3b4; 
+    
+    & a{
+        text-decoration: none;
+        font-weight: bold;
+       color: #f9d3b4;
+    }
+}
