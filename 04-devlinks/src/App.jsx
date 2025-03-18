@@ -2,39 +2,38 @@ import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import Footer from "./components/footer/Footer";
 import MovieCard from "./components/movieCard/MovieCard";
-import logo from "./assets/img/devflix.png"
-import lupa from "./assets/img/search.svg"
+import logo from "./assets/img/devflix.png";
+import lupa from "./assets/img/search.svg";
 // import logo from "";
-
-
-
 
 const App = () => {
   const [search, setSearch] = useState("");
-  const [movies,setMovies] = useState([])
-  
+  const [movies, setMovies] = useState([]);
 
   //Utilizando chaves API do arquivo .env
-  const apiKey = import.meta.env.VITE_OMDB_API_KEY;
+  // const apiKey = import.meta.env.VITE_OMDB_API_KEY;
+  const apiKey = "e4d577fa"
   const apiUrl = `https://omdbapi.com/?apikey=${apiKey}`;
 
+  //Alimentando com dados para não ficar nulo
+  useEffect(() => {
+    searchMovies("Batman");
+  }, []);
+  
+  //Criando a conexão com a API e trazendo informações
+  const searchMovies = async (title) => {
+    const response = await fetch(`${apiUrl}&s=${title}&plot=full`);
+    const data = await response.json();
 
-//Alimentando com dados para não ficar nulo
+    //Alimentando o movies
 
-//Criando a conexão com a API e trazendo informações
-const searchMovies= async (title)=> {
-  const response = await fetch(`${apiUrl}&s=${title}&plot=full`)
-  const data = await response.json();
+    setMovies(data.Search);
+  };
 
-  //Alimentando o movies
-
-  setMovies(data.Search);
-
-}
-
-const handleKeyPress = (e) => { // e = evento | ao clicar ou digitar, acontece algo
-  e.key === "Enter" && searchMovies(search);
-};
+  const handleKeyPress = (e) => {
+    // e = evento | ao clicar ou digitar, acontece algo
+    e.key === "Enter" && searchMovies(search);
+  };
 
   return (
     <div id="app">
@@ -43,38 +42,26 @@ const handleKeyPress = (e) => { // e = evento | ao clicar ou digitar, acontece a
       <div className="search">
         <input
           onKeyDown={handleKeyPress}
-          onChange={(e) =>setSearch(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
           type="text"
           placeholder="Pesquise por filmes"
-       />
-        <img
-         onClick={() => searchMovies(search)}
-         src={lupa} 
-         alt=""
-          />
+        />
+        <img onClick={() => searchMovies(search)} src={lupa} alt="" />
       </div>
 
       {movies?.length > 0 ? (
         <div className="container">
-          {movies.map(
-            (movie,index) => (
-              <MovieCard key={index} {...movie} apiUrl={apiUrl} />
-            ))}
+          {movies.map((movie, index) => (
+            <MovieCard key={index} {...movie} apiUrl={apiUrl} />
+          ))}
         </div>
       ) : (
-
         <h3 className="empty"> Filme não encontrado 😥</h3>
       )}
 
-
-
-
-      <Footer 
-      devName={"LLuizXL"}
-      devLink={"https://github.com/LLuizXL"}
-      />
+      <Footer devName={"LLuizXL"} devLink={"https://github.com/LLuizXL"} />
     </div>
   );
-}
+};
 
 export default App;
