@@ -30,6 +30,7 @@ function App() {
 
   return (
     <div id="App">
+      <div className="static-overlay"></div>
       <div className="stars"></div>
       <div className="Profile">
         <img src="https://placehold.co/200x200"></img>
