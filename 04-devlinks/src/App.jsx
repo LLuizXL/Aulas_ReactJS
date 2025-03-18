@@ -22,7 +22,7 @@ const App = () => {
   
   //Criando a conexão com a API e trazendo informações
   const searchMovies = async (title) => {
-    const response = await fetch(`${apiUrl}&s=${title}&plot=full`);
+    const response = await fetch(`${apiUrl}&s=${title}`);
     const data = await response.json();
 
     //Alimentando o movies
