@@ -9,7 +9,7 @@ const MovieCard = (props) => {
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   }
-
+ 
 
   return (
     <>

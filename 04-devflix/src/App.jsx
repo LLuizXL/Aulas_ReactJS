@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Footer from "./components/footer/Footer";
 import MovieCard from "./components/movieCard/MovieCard";
@@ -26,7 +26,6 @@ const App = () => {
     const data = await response.json();
 
     //Alimentando o movies
-
     setMovies(data.Search);
   };
 
