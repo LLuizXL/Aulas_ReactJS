@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-
+import * as signalR from "@microsoft/signalr"
 
 
 const Chat = (props) => {
@@ -12,30 +12,26 @@ const bottomRef = useRef()
 
 useEffect(() => {
    props.socket.on("receive_message", (data) =>{
+    console.log("Mensagem recebida:", data);
         setMessageList((current) => [...current, data])
     });
 
     return () => props.socket.off("receive_message");
 },[props.socket]);
 
+
+
 useEffect(() =>{
    bottomRef.current.scrollIntoView({behavior: "smooth"})
 },[messageList])
 
     const handleSubmit = () => {
-
-// if (
-//     messageList.map(
-//         (message) => message.userName == "undefined" && window.location.reload()
-//     )
-// )
-
-        <props className="msg"></props>
         const message = messageRef.current.value;
+
         if (!message.trim()) return;
 
-props.socket.emit("message", message)
 
+        props.socket.invoke("SendMessage", message) //
         messageRef.current.value = "";
         messageRef.current.focus();
 
@@ -49,16 +45,22 @@ props.socket.emit("message", message)
     <div id="chat-body"
      className="d-flex flex-column gap-3 overflow-y-hidden h-100">
 
-    {messageList.map((message, index) => (
-        <div 
-        className={` ${message.authorId===props.socket.id ? "align-self-end ms-5 bg-dark bg-gradient" : "align-self-start me-5 bg-success bg-gradient"}  p-2 rounded-3`} 
-        key={index}> 
+    {messageList.map((message, index) => {
+
+         const myMsg = message.authorId === props.myId;
+
+        return (
+
+            <div 
+            className={`p-2 rounded-3  ${myMsg ? "align-self-end ms-5 bg-dark bg-gradient" : "align-self-start me-5 bg-success bg-gradient"}`} 
+            key={index}> 
 
         <div id="message-author" className="fw-bold">{message.author}</div>
         <div id="message-text" className="">{message.text}</div>
        
         </div>
-    ))}
+        )
+})}
 
     <div ref={bottomRef} />  {/*Delimita a parte de baixo das mensagens*/}
     </div>

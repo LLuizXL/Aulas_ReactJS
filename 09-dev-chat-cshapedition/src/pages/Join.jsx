@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { io, Socket } from 'socket.io-client'
+import * as signalR from '@microsoft/signalr'
 
 const Join = (props) => {
 //Hooks
@@ -14,20 +14,30 @@ const handleSubmit = async () => {
         return;
     }
     
-    const servidorSocket = await io.connect("http://192.168.0.121:3001")
-    servidorSocket.emit("set_username",username);
-
-alert(`Você entrou no chat!`)
-
-props.visibility(true);
-props.setSocket(servidorSocket);
-
-};
-
-// Criando a conexão com servidor  socket
+    const connection = new signalR.HubConnectionBuilder()
+    .withUrl("http://localhost:5298/chat")
+    .withAutomaticReconnect()
+    .build();
 
 
+    try {
+      
+      await connection.start();
+      
+      const connectionId = await connection.invoke("UserId");
+      await connection.invoke("SetUsername", username); // método no backend
 
+      alert("Você entrou no servidor. **Access Granted**");
+      props.setMyId(connectionId);
+      props.setSocket(connection); // passa a conexão para o Chat.jsx
+      props.visibility(true);
+    } catch (err) {
+      console.error("Erro ao conectar ao SignalR:", err);
+
+    }
+  };
+
+    
   return (
     <div className='text-center'>
         <h1>devChat</h1>
