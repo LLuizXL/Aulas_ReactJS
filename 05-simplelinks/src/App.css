@@ -31,7 +31,7 @@
   }
     35%{
       
-      opacity: 1;
+      opacity: 0.6;
       transform: scale(0.2, 0.002)
     }
     50%{
@@ -41,7 +41,7 @@
     }
   85%{
 
-    opacity: 1;
+    opacity: 0.6;
     transform: scale(1, 0.002)
   }
   100%{
@@ -50,6 +50,44 @@
   }
   
 }
+
+
+@keyframes flicker {
+
+  0%{
+     opacity: 1;
+
+  }
+
+  25%{
+    opacity: 0.7;
+  }
+  30%{
+    opacity: 1;
+  }
+  50%{
+     opacity: 0.7;
+
+  }
+
+  70%{
+    opacity: 1;
+  }
+  80%{
+    opacity: 0.7; 
+  }
+  90%{
+    opacity: 1;
+  }
+  95%{
+    opacity: 0.7;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+
 
 :root {
   z-index: 1;
@@ -82,7 +120,9 @@
     border-radius: 60%;
   }
   
-.Profile{}
+.Menu{
+
+}
 
 
  #btn-music{
@@ -103,10 +143,14 @@
 
  
   & p {
-    font-size: 60px;
+    font-size: 40px;
     animation: breathe 3s infinite;
   }
 }
+
+
+
+
 
 .stars {
   z-index: -1;
@@ -135,14 +179,15 @@
     226px 1532px #fff, 1214px 222px #fff, 1201px 783px #fff, 1503px 1412px #fff,
     1909px 1188px #fff, 1789px 751px #fff, 1783px 644px #fff, 1325px 614px #fff,
     1271px 1440px #fff, 554px 665px #fff, 276px 213px #fff, 859px 1574px #fff,
-    1001px 1189px #fff, 1841px 420px #fff;
+    1001px 1189px #fff, 1841px 420px #fff, 671px 1189px #fff, 1841px 420px #fff;
   position: absolute;
   width: 5px;
   height: 5px;
   background: transparent;
-  animation: animaStars 200s linear infinite;
+  animation: animaStars 220s linear infinite;
 }
 .Menu ul {
+  animation: flicker 1.5s infinite;
   
   text-align: center;
   padding: 10px;
@@ -161,6 +206,29 @@
   text-transform: uppercase;
   text-decoration: none;
   color: #fff;
-  font-size: 25px;
+  font-size: 20jj
+  
+  px;
+}
+
+
+footer {
+  margin-top: 100px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: whitesmoke;
+
+  & li{
+    list-style: none;
+  }
+
+  & a {
+    margin: 15px;
+    color: beige;
+    text-decoration: none;
+  }
 }
 
