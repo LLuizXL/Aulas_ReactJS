@@ -21,7 +21,7 @@
     width: 100%;
     opacity: 0;
     top: 0;
-    color: #f9d3b4;
+    color: #fff;
   }
   
   .movie:hover {
@@ -60,7 +60,7 @@
   
   .movie div:nth-of-type(3) h3 {
     margin-top: 5px;
-    color: #f9d3b4;
+    color: #fff;
   }
   
   .movie:hover div:nth-of-type(2) {
@@ -77,4 +77,5 @@
   .movie:hover div:nth-of-type(1) {
     opacity: 1;
   }
+
   
