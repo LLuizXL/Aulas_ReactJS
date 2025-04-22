@@ -23,11 +23,11 @@ const handleSubmit = async () => {
     try {
       
       await connection.start();
-      
+                                             
       const connectionId = await connection.invoke("UserId");
       await connection.invoke("SetUsername", username); // método no backend
 
-      alert("Você entrou no servidor. **Access Granted**");
+      alert("Você entrou no servidor. Access Granted");
       props.setMyId(connectionId);
       props.setSocket(connection); // passa a conexão para o Chat.jsx
       props.visibility(true);
@@ -37,10 +37,13 @@ const handleSubmit = async () => {
     }
   };
 
-    
+
+
+//---------------------------------------------------------------------- Customização da Landing Page --------------------------------------------------------------------
+  
   return (
     <div className='text-center'>
-        <h1>devChat</h1>
+        <h1 className='display-3 fw-bold'>Luiz's Cozy Place</h1>
         <div className='container bg-secondary rounded-4 py-4 px-5 shadow d-flex flex-column justify-content-center align-items-center gap-3 text-light mt-4'>
                 <h4>Bem-vindo ao DevChat!</h4>
         <input ref={usernameRef} type='text'  className=' w-100 text-center bg-light rounded-3 border-0 border-bottom border-light text-dark my-4' placeholder='Digite seu usuário...'
