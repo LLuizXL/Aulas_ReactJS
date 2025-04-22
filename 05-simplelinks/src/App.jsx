@@ -11,12 +11,13 @@ function App() {
     if (audioRef.current) {
       audioRef.current.play();
       setIsPlaying(true);
+      setIsPlaying(true);
     }
   };
   const pauseMusic = () => {
     if (audioRef.current) {
       audioRef.current.pause();
-      setIsPlaying(false);
+      setIsPlaying(false)
     }
   };
 
@@ -32,6 +33,7 @@ function App() {
     <div id="App">
       <div className="static-overlay"></div>
       <div className="stars"></div>
+      <div className="tveffect"></div>
       <div className="Profile">
         <img src="https://placehold.co/200x200"></img>
         <p>@LLuizXL</p>
@@ -60,7 +62,22 @@ function App() {
       WHEN IN DOUBT, ALWAYS STRIVE AND PROSPER.
         </p>
 
-        </footer>
+      <footer>
+        <li>
+          <a target="_blank" href="https://github.com/LLuizXL">
+          Github!
+          </a>
+          <a target="_blank" href="https://www.instagram.com//awgemxllo"> 
+          Instagram!
+          </a>
+          <a target="_blank" href="https://www.linkedin.com/in/luiz-guilheme-vieira-de-melo-6b39a4347/"> 
+          Linkedin!
+          </a>
+        </li>
+        <p>always $trive and prosper!</p>
+      </footer>
+
+    
     </div>
   );
 }
